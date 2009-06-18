@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+{% load i18n %}
+{% block title %}{% trans 'Welcome' %}{% endblock %} 
+
+{% block content %} 
+
+	<div class="content">
+	<div class="pagefragment">
+	
+		<h2>Welcome! Bienvenue! Willkommen! ¡Bienvenido!  歓迎</h2>
+		{% if user.username %} 
+      <p> {{ user.username }}! 
+        Here you can register and check your activities!</p> 
+    {% else %} 
+      <p>Anonymous user! 
+      You need to <a href="/login/">login</a> 
+      before you can register and check your activities.</p> 
+    {% endif %} 
+		
+		<p>{{ page_body }}</p>
+
+		<div id="main">	
+		<ul id="app-exhibit">
+			<li class="cssedit2">
+				<a href="/">
+					<strong>CSSEdit.</strong>
+				</a>
+			</li>
+			<li class="deskshade">
+				<a href="/">
+					<strong>Time Tracker</strong>
+					{% trans 'gives you all you need. Get one step closer to admin nirvana' %}&hellip;
+				</a>
+			</li>
+		</ul>		
+		</div> <!-- End Main -->
+		
+		<div id="side" class="infobox">
+		<h2>{% trans 'Links' %}</h2>
+		<ul id="actions">
+			<li><a href="http://www.macrabbit.com/espresso/get/" class="dl">Intranet</a></li>
+			<li><a href="http://www.macrabbit.com/cssedit/get/" class="dl">Spira</a></li>
+			<li><a href="http://www.macrabbit.com/deskshade/get/" class="dl">{% trans 'News' %}</a></li>
+		</ul>
+		
+		<h2 class="separated">{% trans 'Subscribe to rss' %}</h2>
+		<p>{% trans 'Get the latest testing news in your newsreader.' %} 
+			<a href="http://www.macrabbit.com/blog/feed/" class="go feed">{% trans 'Subscribe to the feed.' %}</a>
+		</p>
+		</div> <!-- End Side -->
+	
+	</div> <!-- End pagefragment -->
+	</div>
+	
+{% endblock %} 

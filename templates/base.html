@@ -1,0 +1,65 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8;charset=utf-8" />
+	<title>
+		Experior | {% block title %}{% endblock %}
+	</title>
+	<link rel="stylesheet" href="/site_media/basics.css" type="text/css" /> 
+	<link rel="stylesheet" href="/site_media/frontpag.css" type="text/css" /> 
+	<link rel="stylesheet" href="/media/css/forms.css" type="text/css" />
+</head>
+
+<body class="frontpage">
+		
+	<div id="navigation">
+		<ul>
+			<li id="nav-home" >
+				<a href="/">Experior</a>
+			</li>
+			<li id="nav-apps" class={{ activities_class }}>
+				<a href={%url timetracking.views.activities_page%}>{% trans 'Activities' %}</a>
+			</li>
+			<li id="nav-blog" class={{ reports_class }}>
+				<a href={%url timetracking.views.reports_page%}>{% trans 'Reports' %}</a>
+			</li>
+			<li id="nav-goodies" class={{ misc_class }}>
+				<a href={%url timetracking.views.misc_page%}>{% trans 'Misc' %}</a>
+			</li>
+			<li id="nav-about" class={{ about_class }}>
+				<a href={%url timetracking.views.about_page%}>{% trans 'About' %}</a>
+			</li>
+			<li id="nav-support" class={{ help_class }}>
+				<a href={%url timetracking.views.help_page%}>{% trans 'Help' %}</a>
+			</li>			
+			{% if user.is_authenticated %} 
+			<li id="nav-info" class={{ account_class }}>
+				<a href={%url timetracking.views.account_page%}> {{ user.username }}</a>
+			</li>
+				<li id="nav-login" class={{ login_class }}>
+					<a href={%url timetracking.views.logout_page%}>{% trans 'Log out' %}</a>
+				</li>
+	    {% else %} 
+			<li id="nav-info" class={{ account_class }}>
+				 <a> anonymous </a>
+			</li>
+			<li id="nav-login" class={{ login_class }}>
+				<a href={%url django.contrib.auth.views.login%}>{% trans 'Log in' %}</a>
+			</li>
+	    {% endif %}
+			
+		</ul>
+	</div> <!-- End Navigation -->
+
+  	{% block content %}{% endblock %}
+	
+	<div class="footer">
+	<p id="footer">
+		&copy; 2004-2009 Teh testing team &amp; Norberto Ortigoza. All rights reserved worldwide.
+	</p>
+	</div> <!-- End footer -->
+	
+</body>
+</html>

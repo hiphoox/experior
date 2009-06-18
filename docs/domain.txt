@@ -1,0 +1,164 @@
+APPLICATIONS
+============
+	-Time Tracker
+	-Project Manager  (project, service order, execution request, etc.)
+
+
+DOMAIN
+========
+
+----------------------------------------------------------------------------------------------
+WorkSession
+---------
+* creation_date
+* work_date
+* time
+* description
+* activity (it could be empty if description is not nil and vice-versa)
+* work_item (Module, application, document, artifact, etc.) (it could be empty)
+* comments
+* billable
+* project
+* category
+* employee
+
+
+Activity
+--------
+* name
+* description
+* client
+* enabled
+* billable
+
+
+WorkItem (applications, documents, etc.)
+----------------------------------------
+* name
+* description
+* client
+* enabled
+
+----------------------------------------------------------------------------------------------
+Project
+-------
+* external_description_name (name given by the client: folio, service order, execution request)
+* external_id (identifier given by the client)
+* name
+* description
+* creation_date (when the project was approved)
+* request_date (when we received the formal request by the client)
+* enabled
+* client
+* client_business_unit (Dominio, etc.)
+* work_items (Applications, etc.)
+* status (canceled, active, suspended)
+* client_responsible
+* rate
+* currency
+* exchange_rate
+* default_category
+* planned_start_date
+* real_start_date
+* planned_end_date
+* real_end_date
+* planned_effort
+* real_effort
+* budget (costo)
+* references (links or other supplemental info)
+* employees (team assigned to the project)
+* assigned_to (Pruebas, Desarrollo, Análisis, …)
+* type (Clasificación de nivel de requerimiento: N1, N2 N3, N4, N5)
+* staff
+* milestones (Requerimiento funcional, entregable, fechas, etc.)
+* internal_type (Asignación, fábrica, buró)
+* internal_business_unit
+* region (Mexico, Monterrey, Guadalajara, EU)
+* employees
+
+
+ProjectType
+-----------
+* name
+* description
+* enabled
+* client
+
+
+ProjectStatus
+-------------
+* name
+* description
+* enabled
+* next_statues
+
+
+----------------------------------------------------------------------------------------------
+Company (client or ourselves)
+-----------------------------
+* name
+* rate
+* description
+* staff
+* ramo
+* main_contact
+* address
+* since
+* razon_social
+
+
+BusinessUnit (organizational structure)
+---------------------------------------
+* name
+* description
+* company
+* staff (people in charge)
+* parent
+* children
+
+
+----------------------------------------------------------------------------------------------
+Category (activity classification)
+----------------------------------
+* name
+* description
+* enabled
+* company
+
+
+----------------------------------------------------------------------------------------------
+Employee
+--------
+* name
+* salary
+* is_staff
+* telephone
+* birth_date
+* contract_date
+* region
+* email
+* comments
+* passport
+* technical
+* travel_disponibility
+* english_level
+* estado_civil
+* e-mail
+* status
+* role
+
+
+----------------------------------------------------------------------------------------------
+StatusLog
+---------
+* project
+* change_date
+* previous_status
+* new_status
+
+
+Notes:
+
+	1.	We must take into account free and fixed description entries.
+	2.	Don't forget to include staff assigned to the project and its respective cost. 
+	

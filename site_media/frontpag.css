@@ -1,0 +1,72 @@
+/* @override http://127.0.0.1:8000/site_media/frontpag.css */
+
+body.frontpage {
+	
+}
+
+body.frontpage #navigation ul, body.frontpage #page, body.frontpage .pagefragment {
+	xwidth: 855px;
+}
+
+#main {
+	float: left;
+	width: 567px;
+	margin-top: 0;
+}
+
+#side {
+	clear: none;
+	display: block;
+	float: right;
+	width: 173px;
+	margin-top: 0;
+}
+
+#main #app-exhibit, #main #app-exhibit li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#main #app-exhibit .cssedit2 {
+	margin: 0 0 2px 2px;
+}
+
+#main #app-exhibit .cssedit2 a {
+	display: block;
+	height: 180px;
+	border: none;
+	text-align: center;
+	padding-top: 206px;
+	background: url(Presenti2.png) no-repeat;
+	overflow: hidden;
+	text-decoration: none;
+}
+
+#main #app-exhibit .cssedit2 a strong {
+	display: none;
+}
+
+#main #app-exhibit .cssedit2 a span {
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+	line-height: 33px;
+	padding-right: 16px;
+}
+
+#main #app-exhibit .deskshade a {
+	display: block;
+	margin: 0 3px 0 2px;
+	font-size: 12px;
+	text-align: left;
+	padding: 22px 20px 22px 90px;
+	color: #2d3e62;
+	background: #d0dfe8 url(DeskShad.gif) no-repeat;
+	text-decoration: none;
+}
+
+.front #side #actions {
+	margin-top: 5px;
+	padding-top: 0;
+}

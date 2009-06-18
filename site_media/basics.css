@@ -1,0 +1,442 @@
+/* @override http://127.0.0.1:8000/site_media/basics.css */
+
+body {
+	margin: 0;
+	font: 12px/1.9 "Lucida Grande", Lucida, Verdana, sans-serif;
+	color: #333;
+	background-color: #fff;
+}
+
+/* @group Page Dimensions */
+
+#navigation ul, #page, .pagefragment {
+	width: 800px;
+}
+
+/* @end */
+
+h1 {
+	/*display: none;*/
+	font-size: 1.4em;
+}
+
+h2 {
+	font-size: 1.2em;
+	margin-top: 25px;
+	margin-bottom: 12px;
+}
+
+p, ul, ol {
+	margin-bottom: 20px;
+	text-align: justify;
+}
+
+p code {
+	display: block;
+	text-align: left;
+}
+
+ul, ol {
+	padding-left: 25px;
+}
+
+a {
+	color: #008bcc;
+}
+
+a:hover {
+	color: #21a1ef;
+}
+
+a:visited {
+	color: #754acc;
+}
+
+#page, .pagefragment {
+	margin: 0 auto 30px;
+	margin-top: 50px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.loginform{
+	text-align: center;
+}
+
+.loginsection {
+	margin: 0 auto 30px;
+	width: 240px;
+}
+
+.centered {
+	text-align: center;
+}
+
+a img {
+	border: none;
+}
+
+img.left.padded {
+	margin: 0 15px 15px 0;
+}
+
+img.left {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 8px;
+}
+
+img.right {
+	float: right;
+	margin-bottom: 8px;
+	margin-left: 20px;
+}
+
+/* @group Footer */
+
+#footer {
+	font-size: 11px;
+	text-align: center;
+	margin-top: 100px;
+	color: #888;
+	clear: both;
+}
+
+/* @end */
+
+/* @group Navigation */
+
+#navigation {
+	display: block;
+	background: url(BarBackg.png) repeat-x 50% 100%;
+	padding: 0 40px 1px;
+	font-size: 11px;
+}
+
+#navigation * {
+	padding: 0;
+	margin: 0;
+}
+
+#navigation ul {
+	display: block;
+	margin: 0 auto;
+/*	background: url(Logo0000.png) no-repeat 100% 50%; TODO:NOM*/
+}
+
+#navigation li {
+	display: block;
+	float: left;
+}
+
+#navigation li:hover {
+	
+}
+
+#navigation li.active {
+	background: url(ActiveTa.png) repeat-x 50% 100%;
+	background: url(ActiveTabSideShadows.png) repeat-y 0% 100%, url(ActiveTabSideShadows.png) repeat-y 100% 100%, url(ActiveTa.png) repeat-x 50% 100%;
+	background-color: #c9c9c9;
+}
+
+#navigation li a {
+	display: block;
+	padding: 50px 10px 13px;
+/*	padding: 75px 7px 30px; TODO:NOM*/
+	color: #444;
+	font-weight: normal;
+	text-decoration: none;
+	background-image: url(Icons.png);
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	text-align: center;
+	width: 5.5em;
+}
+
+#navigation li a:hover {
+	background-image: url(IconsHov.png);
+}
+
+#navigation li.active a, #navigation li.active a:hover {
+	font-weight: bold;
+	background-image: url(IconsAct.png);
+	color: #f8f8f8;
+	text-shadow: #444 0 1px 0;
+}
+
+/* @group Auto-clearing */
+
+#navigation:after, #navigation ul:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+#navigation, #navigation ul { display: inline-block }
+
+/* Hides from IE-mac \*/
+* html #navigation, * html #navigation ul { height: 1% }
+#navigation, #navigation ul { display: block }
+/* End hide from IE-mac */
+	
+/* @end Auto-Clearing*/
+
+/* @group Sections */
+
+/*todo:nom*/
+#navigation li#nav-home a {
+/*	background: url(Name.png) no-repeat 0 50%;*/
+	background-position: 50% -4010px;
+/*	width: 13px;*/
+	padding-left: 0;
+	padding-right: 0;
+	overflow: hidden;
+/*	text-indent: -1000em;*/
+/*	margin-right: 15px;*/
+	margin-left: -28px;
+	padding: 20px 0px 10px;
+	font-size: 2.5em; /*todo:nom*/
+    color:#f1690F;
+	margin-top: 15px;
+}
+
+#navigation li#nav-apps a {
+	background-position: 50% -10px;
+}
+
+#navigation li#nav-blog a {
+	background-position: 50% -510px;
+}
+
+#navigation li#nav-goodies a {
+	background-position: 50% -1010px;
+}
+
+#navigation li#nav-about a {
+	background-position: 50% -1510px;
+}
+
+#navigation li#nav-support a {
+	background-position: 50% -2010px;
+}
+
+/*todo:nom*/
+#navigation li#nav-info a {
+	background-position: 50% -4010px;
+	padding: 10px 0px 10px;
+	padding-left: 150px;
+}
+#navigation li#nav-login a {
+	background-position: 50% -3010px;
+	padding: 10px 0px 10px;
+	float: right;
+}
+
+#navigation li#nav-home a:hover {
+	background-position: -20px 50%;
+}
+
+li#nav-apps a:hover {
+	text-shadow: #edc36e 0 0px 15px;
+}
+
+li#nav-blog a:hover {
+	text-shadow: #6eb0fa 0 0px 15px;
+}
+
+li#nav-goodies a:hover {
+	text-shadow: #7ec837 0 0px 15px;
+}
+
+li#nav-about a:hover {
+	text-shadow: #fdc264 0 0px 15px;
+}
+
+li#nav-support a:hover {
+	text-shadow: #f9a7ac 0 0px 15px;
+}
+
+/* @end Sections*/
+
+/* @end Navigation*/
+
+/* @group Auto-clearing */
+
+.autoclear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.autoclear { display: inline-block }
+
+/* Hides from IE-mac \*/
+* html .autoclear { height: 1% }
+.autoclear { display: block }
+/* End hide from IE-mac */
+	
+/* @end Auto-clearing*/
+
+/* @group Sections */
+
+body.goodies #page, body.about #page, body.support #page, body.error404 #page, body.error403 #page {
+	margin-top: 40px;
+	background-position: 100% 0;
+	background-repeat: no-repeat;
+	padding-top: 64px;
+}
+
+body.goodies #page {
+	background-image: url(Goodies.png);
+}
+
+body.about #page {
+	background-image: url(About.png);
+}
+
+body.support #page {
+	background-image: url(Support.png);
+}
+
+body.error404 #page {
+	background-image: url(Error404.png);
+}
+
+body.error403 #page {
+	background-image: url(Error403.png);
+}
+
+body.goodies h1, body.about h1, body.support h1, body.error404 h1, body.error403 h1 {
+	display: block;
+	padding-top: 0;
+	padding-bottom: 30px;
+	line-height: 1;
+	margin: 0 0 12px;
+}
+
+body.goodies h1 {
+	margin-right: 350px;
+}
+
+body.about h1 {
+	margin-right: 310px;
+}
+
+body.support h1 {
+	margin-right: 350px;
+}
+
+/* @end Sections*/
+
+/* @group Info Box */
+
+.infobox {
+	background-color: #e3e3e3;
+	display: block;
+	padding: 10px 15px 1px;
+	margin-bottom: 20px;
+	color: #727272;
+	margin-top: 5px;
+	text-shadow: #fff 0 1px 0;
+	font-size: 0.9em;
+	-webkit-border-radius: 7px;
+	clear: both;
+}
+
+.infobox.width33 {
+	width: 33%;
+}
+
+.infobox.width25 {
+	width: 25%;
+}
+
+.infobox.left {
+	float: left;
+	margin-right: 30px;
+}
+
+.infobox.right {
+	float: right;
+	margin-left: 30px;
+}
+
+.infobox h2 {
+	color: #fff;
+	text-transform: lowercase;
+	font: italic bold 1.7em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-shadow: #7d7d7d 0 1px 0;
+	margin: 0 0 10px;
+}
+
+.infobox.caseunchanged h2 {
+	text-transform: none;
+}
+
+.infobox p, .infobox ul {
+	margin: 0 0 10px;
+	text-align: left;
+}
+
+.infobox p.centered {
+	text-align: center;
+}
+
+.infobox a {
+	color: #555;
+}
+
+/* @group Columns */
+
+.infobox.threecolumns {
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.infobox.threecolumns .column {
+	display: block;
+	width: 30%;
+	background-colorr: #e6ff4f;
+	float: left;
+	margin-left: 5%;
+}
+
+.infobox.twocolumns {
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.infobox.twocolumns .column {
+	display: block;
+	width: 47%;
+	float: left;
+	margin-left: 5%;
+}
+
+.infobox .column.first {
+	margin-left: 0;
+}
+
+/* @end Columns*/
+
+/* @end Info Box*/
+
+
+/* @group Support Page */
+
+.question {
+	color: #d5d5d5;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 1em;
+	margin-right: 11px;
+	display: block;
+	float: left;
+	margin-top: -2px;
+}
+
+/* @end Support Page*/

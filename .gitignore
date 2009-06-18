@@ -1,0 +1,8 @@
+#Excluding the database file.
+*.db
+#Excluding binary files.
+*.pyc
+# osx noise
+.DS_Store
+# location binaries
+*.mo

@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-06-17 18:09-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html:23
+msgid "Activities"
+msgstr "Actividades"
+
+#: templates/base.html:26
+msgid "Reports"
+msgstr "Reportes"
+
+#: templates/base.html:29
+msgid "Misc"
+msgstr "Misc"
+
+#: templates/base.html:32
+msgid "About"
+msgstr "Acerca de"
+
+#: templates/base.html:35
+msgid "Help"
+msgstr "Ayuda"
+
+#: templates/base.html:42
+#, fuzzy
+msgid "Log out"
+msgstr "Log in"
+
+#: templates/base.html:49
+msgid "Log in"
+msgstr "Log in"
+
+#: templates/main.html:3
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: templates/main.html:32
+msgid "gives you all you need. Get one step closer to admin nirvana"
+msgstr ""
+"te da todo lo que necesitas. Acercate un paso más al nirvana de la "
+"administración"
+
+#: templates/main.html:39
+msgid "Links"
+msgstr "Ligas"
+
+#: templates/main.html:43
+msgid "News"
+msgstr "Noticias"
+
+#: templates/main.html:46
+msgid "Subscribe to rss"
+msgstr "Suscribete al rss"
+
+#: templates/main.html:47
+msgid "Get the latest testing news in your newsreader."
+msgstr "Obten las últimas noticias en tu lector de noticas."
+
+#: templates/main.html:48
+msgid "Subscribe to the feed."
+msgstr "Suscribete al feed."
+
+#~ msgid "Account"
+#~ msgstr "Cuenta"

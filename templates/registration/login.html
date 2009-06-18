@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% block title %}Log in{% endblock %} 
+
+{% block content %} 
+
+	<div class="pagefragment">
+		<div class="loginsection">
+	   <h1>User Login</h1>
+   {% if form.errors %} 
+      <ul class="errorlist">
+				<li>Your username and password didn't match. Please try again.</li>
+			</ul> 
+    {% endif %} 
+    <form method="post" action="." class="loginform"> 
+      <p><label for="id_username">Username:</label> 
+        {{ form.username }}</p> 
+      <p><label for="id_password">Password:</label> 
+        {{ form.password }}</p> 
+      <input type="hidden" name="next" value="/" /> 
+      <input type="submit" value="login" /> 
+    </form> 
+		</div>
+	</div> <!-- End pagefragment -->
+	
+{% endblock %} 
+

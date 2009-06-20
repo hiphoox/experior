@@ -1,0 +1,29 @@
+Welcome to Experior project!
+==============================
+
+Under the docs directory you will find all the documentation you need to start working with Experior.
+
+You need to create the database using manage.py so you can run the app.
+
+
+Enjoy!
+
+
+git commit conventions
+-----------
+Labels to use at the beginning of the commit:
+
+	1.	Add:
+	2.	Fix:
+	3.	Ref:
+	4.	Conf:
+	5.	Doc:
+
+
+Webfaction configuration references:
+------------------------------------
+[Webfaction console](https://panel.webfaction.com/ "Title")
+
+[Serving static files](http://forum.webfaction.com/viewtopic.php?id=29)
+
+README file under [experior.webfactional.com/$HOME](experior.webfactional.com/$HOME)

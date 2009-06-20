@@ -82,5 +82,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'django_extensions',
-    'timetracking',
+    'experior.timetracking',
 )

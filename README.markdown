@@ -7,3 +7,12 @@ You need to create the database using manage.py so you can run the app.
 
 
 Enjoy!
+
+
+git commit conventions
+-----------
+Labels to use:
+Add:
+Fix:
+Ref:
+Conf:

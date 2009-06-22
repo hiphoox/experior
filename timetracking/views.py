@@ -66,7 +66,13 @@ def login_page(request):
 
 def logout_page(request): 
   logout(request) 
-  return HttpResponseRedirect('/') 
+  variables = RequestContext(request, { 
+    'logged_out_class': 'active'
+  })
+  return render_to_response( 
+    'logged_out.html', variables
+  )
+#  return HttpResponseRedirect('/') 
 
 def account_page(request): 
   variables = RequestContext(request, { 

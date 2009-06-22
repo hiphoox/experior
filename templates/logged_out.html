@@ -1,0 +1,17 @@
+{% extends "base.html" %} 
+{% load i18n %}
+{% block title %}Log in{% endblock %} 
+
+{% block content %}
+
+<div class="content">
+<div class="pagefragment">
+
+	<p>{% trans "Thanks for spending some quality time with the Time Tracking site today." %}</p>
+
+	<p><a href={%url django.contrib.auth.views.login%}>{% trans 'Log in again' %}</a></p>
+
+</div> <!-- End pagefragment -->
+</div>
+
+{% endblock %}

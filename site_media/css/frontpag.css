@@ -38,7 +38,7 @@ body.frontpage #navigation ul, body.frontpage #page, body.frontpage .pagefragmen
 	border: none;
 	text-align: center;
 	padding-top: 206px;
-	background: url(Presenti2.png) no-repeat;
+	background: url(../img/Presenti2.png) no-repeat;
 	overflow: hidden;
 	text-decoration: none;
 }
@@ -62,7 +62,7 @@ body.frontpage #navigation ul, body.frontpage #page, body.frontpage .pagefragmen
 	text-align: left;
 	padding: 22px 20px 22px 90px;
 	color: #2d3e62;
-	background: #d0dfe8 url(DeskShad.gif) no-repeat;
+	background: #d0dfe8 url(../img/DeskShad.gif) no-repeat;
 	text-decoration: none;
 }
 

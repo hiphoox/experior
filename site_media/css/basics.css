@@ -112,7 +112,7 @@ img.right {
 
 #navigation {
 	display: block;
-	background: url(BarBackg.png) repeat-x 50% 100%;
+	background: url(../img/BarBackg.png) repeat-x 50% 100%;
 	padding: 0 40px 1px;
 	font-size: 11px;
 }
@@ -125,7 +125,7 @@ img.right {
 #navigation ul {
 	display: block;
 	margin: 0 auto;
-/*	background: url(Logo0000.png) no-repeat 100% 50%; TODO:NOM*/
+/*	background: url(../img/Logo0000.png) no-repeat 100% 50%; TODO:NOM*/
 }
 
 #navigation li {
@@ -138,8 +138,8 @@ img.right {
 }
 
 #navigation li.active {
-	background: url(ActiveTa.png) repeat-x 50% 100%;
-	background: url(ActiveTabSideShadows.png) repeat-y 0% 100%, url(ActiveTabSideShadows.png) repeat-y 100% 100%, url(ActiveTa.png) repeat-x 50% 100%;
+	background: url(../img/ActiveTa.png) repeat-x 50% 100%;
+	background: url(../img/ActiveTabSideShadows.png) repeat-y 0% 100%, url(../img/ActiveTabSideShadows.png) repeat-y 100% 100%, url(../img/ActiveTa.png) repeat-x 50% 100%;
 	background-color: #c9c9c9;
 }
 
@@ -150,7 +150,7 @@ img.right {
 	color: #444;
 	font-weight: normal;
 	text-decoration: none;
-	background-image: url(Icons.png);
+	background-image: url(../img/Icons.png);
 	background-repeat: no-repeat;
 	background-position: 50% 0;
 	text-align: center;
@@ -158,12 +158,12 @@ img.right {
 }
 
 #navigation li a:hover {
-	background-image: url(IconsHov.png);
+	background-image: url(../img/IconsHov.png);
 }
 
 #navigation li.active a, #navigation li.active a:hover {
 	font-weight: bold;
-	background-image: url(IconsAct.png);
+	background-image: url(../img/IconsAct.png);
 	color: #f8f8f8;
 	text-shadow: #444 0 1px 0;
 }
@@ -191,7 +191,7 @@ img.right {
 
 /*todo:nom*/
 #navigation li#nav-home a {
-/*	background: url(Name.png) no-repeat 0 50%;*/
+/*	background: url(../img/Name.png) no-repeat 0 50%;*/
 	background-position: 50% -4010px;
 /*	width: 13px;*/
 	padding-left: 0;
@@ -295,23 +295,23 @@ body.goodies #page, body.about #page, body.support #page, body.error404 #page, b
 }
 
 body.goodies #page {
-	background-image: url(Goodies.png);
+	background-image: url(../img/Goodies.png);
 }
 
 body.about #page {
-	background-image: url(About.png);
+	background-image: url(../img/About.png);
 }
 
 body.support #page {
-	background-image: url(Support.png);
+	background-image: url(../img/Support.png);
 }
 
 body.error404 #page {
-	background-image: url(Error404.png);
+	background-image: url(../img/Error404.png);
 }
 
 body.error403 #page {
-	background-image: url(Error403.png);
+	background-image: url(../img/Error403.png);
 }
 
 body.goodies h1, body.about h1, body.support h1, body.error404 h1, body.error403 h1 {

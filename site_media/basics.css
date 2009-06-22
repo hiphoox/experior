@@ -97,9 +97,13 @@ img.right {
 #footer {
 	font-size: 11px;
 	text-align: center;
-	margin-top: 100px;
 	color: #888;
 	clear: both;
+}
+
+#footer p{
+	width: 800px;
+	margin: 0 auto;
 }
 
 /* @end */

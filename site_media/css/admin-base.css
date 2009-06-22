@@ -1,0 +1,16 @@
+/* @override http://127.0.0.1:8000/media/css/base.css */
+
+/*
+    DJANGO Admin
+    by Wilson Miner wilson@lawrence.com
+*/
+
+/* Block IE 5 */
+@import "admin-null.css";
+
+/* Import other styles */
+@import url('admin-global.css');
+@import url('admin-layout.css');
+
+/* Import patch for IE 6 Windows */
+/*\*/ @import "admin-patch-iewin.css"; /**/

@@ -1,4 +1,10 @@
-
+'''
+This script tried to fix a problem with the https redirects in the deployment server.
+The problem was that when the server sent a 302 status code to the browser it sent only a relative path without the https protocol.
+It had the consequence that the client tried to do the GET operation using http.
+We don't need it anymore because it was solved modifying the django.wsgi module, but I have left it as a reference.
+'''
+ 
 class HttpsRedirect(object):
     """
     Handles conditional HTTPS operations. If the request has https, the Location header in the redirect is replaced by an Https.

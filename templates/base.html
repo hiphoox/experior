@@ -46,7 +46,7 @@
 				 <a> anonymous </a>
 			</li>
 			<li id="nav-login" class={{ login_class }}>
-				<a href={%url django.contrib.auth.views.login%}>{% trans 'Log in' %}</a>
+				<a href={%url django.contrib.auth.views.login%}?next=/>{% trans 'Log in' %}</a>
 			</li>
 	    {% endif %}
 			

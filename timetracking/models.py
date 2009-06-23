@@ -28,7 +28,7 @@ class Currency(TimeStampedModel):
       verbose_name_plural = "Currencies"
   
   def __unicode__(self):
-    return u"Currrency: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -39,7 +39,7 @@ class Sector(TimeStampedModel):
   enabled     = models.BooleanField(default=True)
 
   def __unicode__(self):
-    return u"Sector: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -55,7 +55,7 @@ class Activity(TimeStampedModel):
       verbose_name_plural = "Activities"
 
   def __unicode__(self):
-    return u"Activity: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -70,7 +70,7 @@ class Category(TimeStampedModel):
       verbose_name_plural = "Categories"
 
   def __unicode__(self):
-    return u"Category: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -83,7 +83,7 @@ class WorkItem(TimeStampedModel):
   customer    = models.ForeignKey('Company')
 
   def __unicode__(self):
-    return u"WorkItem: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -95,7 +95,7 @@ class ProjectType(TimeStampedModel):
   customer    = models.ForeignKey('Company')
 
   def __unicode__(self):
-    return u"ProjectType: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -111,7 +111,7 @@ class ProjectStatus(TimeStampedModel):
       verbose_name_plural = "Project Statuses"
 
   def __unicode__(self):
-    return u"ProjectStatus: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 
@@ -140,7 +140,7 @@ class Employee(User):
   region         = models.ForeignKey(Region)
 
   def __unicode__(self):
-    return u"Employee: %s, %s" % (self.first_name , self.last_name)
+    return u"%s, %s" % (self.first_name , self.last_name)
 
 
 ####################################################################################################
@@ -161,7 +161,7 @@ class WorkSession(TimeStampedModel):
   #work_item   = models.ForeignKey(WorkItem) #TODO: We need to validate this
 
   def __unicode__(self):
-    return u"WorkSession: %s" % (self.description)
+    return u"%s" % (self.description)
 
 
 ####################################################################################################
@@ -183,7 +183,7 @@ class Company(TimeStampedModel):
       verbose_name_plural = "Companies"
 
   def __unicode__(self):
-    return u"Company: %s" % (self.trade_name)
+    return u"%s" % (self.trade_name)
 
 
 ####################################################################################################
@@ -194,12 +194,12 @@ class BusinessUnit(TimeStampedModel):
   enabled     = models.BooleanField(default=True)
   # Relationships
   company     = models.ForeignKey(Company)
-  parent      = models.ForeignKey('self')
+  parent      = models.ForeignKey('self', null=True, blank=True)
   customer_team = models.ManyToManyField(User)  #customer people in charge
   admin_team  = models.ManyToManyField(Employee, related_name='businessunit_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
 
   def __unicode__(self):
-    return u"BusinessUnit: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -239,5 +239,5 @@ class Project(TimeStampedModel):
   #  work_items #(Applications, etc.)
 
   def __unicode__(self):
-    return u"Project"
+    return u"%s, %s" % (self.name , self.alias)
 

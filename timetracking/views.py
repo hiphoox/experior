@@ -7,6 +7,8 @@ from django.utils.translation import gettext as _
 from django.http import HttpResponseRedirect 
 from django.contrib.auth import logout
 
+from django.contrib.auth.decorators import login_required
+
 def main_page(request): 
   variables = RequestContext(request, { 
     'user': request.user
@@ -16,6 +18,7 @@ def main_page(request):
     'main.html', variables
   )
     
+@login_required 
 def activities_page(request): 
   variables = RequestContext(request, { 
     'activities_class': 'active'
@@ -24,6 +27,7 @@ def activities_page(request):
     'activities.html', variables
   )
   
+@login_required 
 def reports_page(request): 
   variables = RequestContext(request, { 
     'reports_class': 'active'
@@ -32,6 +36,7 @@ def reports_page(request):
     'reports.html', variables
   )
 
+@login_required 
 def misc_page(request): 
   variables = RequestContext(request, { 
     'misc_class': 'active'
@@ -55,14 +60,6 @@ def help_page(request):
   return render_to_response( 
     'help.html', variables
   )
-  
-def login_page(request): 
-  variables = RequestContext(request, { 
-    'login_class': 'active'
-  })
-  return render_to_response( 
-    'login.html', variables
-  )
 
 def logout_page(request): 
   logout(request) 
@@ -74,11 +71,12 @@ def logout_page(request):
   )
 #  return HttpResponseRedirect('/') 
 
+@login_required 
 def account_page(request): 
   variables = RequestContext(request, { 
-    'login_class': 'active'
+    'account_class': 'nothing'
   })
   return render_to_response( 
-    'login.html', variables
+    'account.html', variables
   )
   

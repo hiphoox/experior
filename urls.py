@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     (r'^account/$', account_page),
    
    # Account admin
-    (r'^login/$', 'django.contrib.auth.views.login'),
+    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),     
 
     # Media files

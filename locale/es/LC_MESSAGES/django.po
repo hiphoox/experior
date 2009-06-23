@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-17 18:09-0500\n"
+"POT-Creation-Date: 2009-06-23 07:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,21 +39,40 @@ msgstr "Ayuda"
 #: templates/base.html:42
 #, fuzzy
 msgid "Log out"
-msgstr "Log in"
+msgstr "Log out"
 
 #: templates/base.html:49
 msgid "Log in"
 msgstr "Log in"
 
+#: templates/logged_out.html:10
+msgid "Thanks for spending some quality time with the Time Tracking site today."
+msgstr "Gracias por invertir el día de hoy algo de tu valioso tiempo en el Sistema de Actividades"
+
+#: templates/logged_out.html:12
+#, fuzzy
+msgid "Log in again"
+msgstr "Registrate nuevamente"
+
 #: templates/main.html:3
 msgid "Welcome"
 msgstr "Bienvenido"
 
+#: templates/main.html:13
+msgid "Here you can register and check your activities!"
+msgstr "Aquí puedes registrarte y validar tus actividades!"
+
+#: templates/main.html:15
+msgid "Anonymous user! You need to "
+msgstr "Usuario anonimo! Necesitas registrarte "
+
+#: templates/main.html:17
+msgid "before you can register and check your activities."
+msgstr "antes de que puedas capturar o validar tus actividades "
+
 #: templates/main.html:32
 msgid "gives you all you need. Get one step closer to admin nirvana"
-msgstr ""
-"te da todo lo que necesitas. Acercate un paso más al nirvana de la "
-"administración"
+msgstr "te da todo lo que necesitas. Acercate un paso más al nirvana de la administración"
 
 #: templates/main.html:39
 msgid "Links"
@@ -74,6 +93,31 @@ msgstr "Obten las últimas noticias en tu lector de noticas."
 #: templates/main.html:48
 msgid "Subscribe to the feed."
 msgstr "Suscribete al feed."
+
+#: templates/registration/login.html:9
+#, fuzzy
+msgid "User Login"
+msgstr "Log in"
+
+#: templates/registration/login.html:12
+msgid "Your username and password did not match. Please try again."
+msgstr "Tu usuaario y contraseña no coinciden. Por favor intenta nuevamente"
+
+#: templates/registration/login.html:16
+msgid "Username:"
+msgstr "Usuario:"
+
+#: templates/registration/login.html:18
+msgid "Password:"
+msgstr "Contraseña:"
+
+#: timetracking/templates/admin/base_site.html:4
+msgid "Experior admin"
+msgstr "Administración de Experior"
+
+#: timetracking/templates/admin/base_site.html:6
+msgid "Experior administration"
+msgstr "Administración de Experior"
 
 #~ msgid "Account"
 #~ msgstr "Cuenta"

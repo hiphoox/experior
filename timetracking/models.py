@@ -14,7 +14,7 @@ class Region(TimeStampedModel):
   enabled     = models.BooleanField(default=True)
   
   def __unicode__(self):
-    return u"Region: %s, %s" % (self.name , self.description)
+    return u"%s, %s" % (self.name , self.description)
 
 
 ####################################################################################################
@@ -140,7 +140,7 @@ class Employee(User):
   region         = models.ForeignKey(Region)
 
   def __unicode__(self):
-    return u"Employee: %s, %s" % (self.name , self.description)
+    return u"Employee: %s, %s" % (self.first_name , self.last_name)
 
 
 ####################################################################################################
@@ -167,12 +167,12 @@ class WorkSession(TimeStampedModel):
 ####################################################################################################
 class Company(TimeStampedModel):
   """(Company description)"""
-  trade_name  = models.TextField(blank=True)
-  legal_name  = models.TextField(blank=True)
+  trade_name  = models.CharField(blank=True, max_length=80)
+  legal_name  = models.CharField(blank=True, max_length=80)
   description = models.TextField(blank=True)
   rate        = models.DecimalField(max_digits=15, decimal_places=4)
   since       = models.DateField(default=datetime.datetime.today)
-  address     = models.TextField(blank=True)
+  address     = models.CharField(blank=True, max_length=100)
   is_customer = models.BooleanField(default=True)
   # Relationships
   sector      = models.ManyToManyField(Sector) 

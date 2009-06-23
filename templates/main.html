@@ -13,7 +13,7 @@
         {% trans 'Here you can register and check your activities!'%}</p> 
     {% else %} 
       <p>{% trans 'Anonymous user! You need to '%}
-			<a href={%url django.contrib.auth.views.login%}>login</a> 
+			<a href={%url django.contrib.auth.views.login%}?next=/>login</a> 
       {% trans 'before you can register and check your activities.'%}</p> 
     {% endif %} 
 		

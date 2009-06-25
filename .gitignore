@@ -6,3 +6,5 @@
 .DS_Store
 # location binaries
 *.mo
+initial_data.json
+model.dot

@@ -154,7 +154,7 @@ class WorkSession(TimeStampedModel):
   comments    = models.TextField(blank=True) 
   billable    = models.BooleanField(default=True)
   # Relationships
-  activity    = models.ForeignKey(Activity, null=True) 
+  activity    = models.ForeignKey(Activity, blank=True, null=True) 
   category    = models.ForeignKey(Category)
   project     = models.ForeignKey('Project')
   employee    = models.ForeignKey(Employee) 

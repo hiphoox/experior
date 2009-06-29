@@ -1,7 +1,7 @@
 # Django settings for experior project.
 import os.path
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

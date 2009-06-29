@@ -6,5 +6,7 @@
 .DS_Store
 # location binaries
 *.mo
+#Local files
 initial_data.json
 model.dot
+local_settings.py

@@ -8,10 +8,10 @@ You need to create the database using manage.py so you can run the app.
 
 Enjoy!
 
-
+----
 git commit conventions
------------
-Labels to use at the beginning of the commit:
+======================
+Labels to use at the beginning of the commits:
 
 	1.	Add:
 	2.	Fix:
@@ -20,10 +20,25 @@ Labels to use at the beginning of the commit:
 	5.	Doc:
 
 
+----
 Webfaction configuration references:
-------------------------------------
+====================================
 [Webfaction console](https://panel.webfaction.com/ "Title")
 
 [Serving static files](http://forum.webfaction.com/viewtopic.php?id=29)
 
 README file under [experior.webfactional.com/$HOME](experior.webfactional.com/$HOME)
+
+
+----
+REFERENCES
+==========
+1.	[django development][0]
+2.	[python paths][1]
+3.	[extending django user model][2]
+4.	[django & SSL][3]
+
+[0]: http://www.b-list.org/
+[1]: http://www.stereoplex.com/two-voices/understanding-imports-and-pythonpath
+[2]: http://scottbarnham.com/blog/2008/08/21/extending-the-django-user-model-with-inheritance/
+[3]: http://www.tangerinesmash.com/2009/red-robot-studios-part-3-securing-django-ssl/

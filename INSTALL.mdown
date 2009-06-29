@@ -1,0 +1,60 @@
+DEVELOPMENT TOOLS
+=================
+*	Language: [python 2.5][0]
+* Isolated enviroments: 
+	* [virtualenv][1]
+	*	[virtualenvwrapper][2]
+*	Build: [pip][3]
+* VCS: [git][4]
+* Deployment: 
+	* [ssh][5] 
+	* [ssh-add][6]
+
+[0]: http://www.python.org/
+[1]: http://pypi.python.org/pypi/virtualenv/
+[2]: http://www.doughellmann.com/projects/virtualenvwrapper/
+[3]: http://pip.openplans.org/
+[4]: http://git-scm.com/
+[5]: http://bashcurescancer.com/run_remote_commands_with_ssh.html
+[6]: http://www.snailbook.com/faq/no-passphrase.auto.html
+
+----------
+FRAMEWORKS
+==========
+*	[django 1.1][7]
+* [django-extensions][8]
+
+[7]: http://www.djangoproject.com/
+[8]: http://code.google.com/p/django-command-extensions/
+
+----------
+STEPS
+=====
+1.	Install git
+2.	Install python 2.5
+3.	Install virtualenv
+
+	`easy_install virtualenv`
+
+4.	Install virtualenvwrapper
+
+	`easy_install virtualenvwrapper`
+###In your .bashrc or .profile write down:###
+	`export WORKON_HOME=$HOME/.virtualenvs
+	source $VIRTUAL_WRAPPER_DIRECTORY/virtualenvwrapper_bashrc`
+	
+5.	Install pip
+
+	`easy_install pip`
+###In your .bashrc or .profile write down:###
+	`export PIP_VIRTUALENV_BASE=$WORKON_HOME`
+
+6.	Install experior
+
+	`pip install -E new-django-env/ experior_environment.txt
+	cd $HOME/my_app_dir
+	workon new-django-env
+	git clone git@github.com:stonefree/experior.git
+	Enjoy!!!`
+	
+----------

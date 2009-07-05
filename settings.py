@@ -87,6 +87,9 @@ INSTALLED_APPS = (
     'experior.timetracking',
 )
 
+#This allows us to include personal settings without modifying this files.
+#The local_settings file does not have to be included in the git repository. 
+#Example: DEBUG = True.
 try: 
     from local_settings import * 
 except ImportError: 

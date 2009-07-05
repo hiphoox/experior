@@ -3,14 +3,12 @@ from django_extensions.db.models import TimeStampedModel
 from django.contrib.auth.models import User, UserManager
 import datetime
 
-# Create your models here.
-
 #######################################   Catalogs  ################################################  
 ####################################################################################################
 class Region(TimeStampedModel):
-  """(Region description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """Regions where we have operations"""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   
   def __unicode__(self):
@@ -19,9 +17,9 @@ class Region(TimeStampedModel):
 
 ####################################################################################################
 class Currency(TimeStampedModel):
-  """(Currency description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """Currencies used in contracts"""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   
   class Meta:
@@ -33,9 +31,9 @@ class Currency(TimeStampedModel):
 
 ####################################################################################################
 class Sector(TimeStampedModel):
-  """(Sector description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """Business sectors"""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
 
   def __unicode__(self):
@@ -44,9 +42,9 @@ class Sector(TimeStampedModel):
 
 ####################################################################################################
 class Activity(TimeStampedModel):
-  """(Activity description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """Activities that are predefined by the customer. As in Banorte."""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   billable    = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
@@ -61,8 +59,8 @@ class Activity(TimeStampedModel):
 ####################################################################################################
 class Category(TimeStampedModel):
   """(Category description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
 
@@ -75,9 +73,9 @@ class Category(TimeStampedModel):
 
 ####################################################################################################
 class WorkItem(TimeStampedModel):
-  """(WorkItem description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """This could represent a project an artefact or whatever is produced as a result of a worksession"""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   is_delib    = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
@@ -89,8 +87,8 @@ class WorkItem(TimeStampedModel):
 ####################################################################################################
 class ProjectType(TimeStampedModel):
   """ProjectType """
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
 
@@ -100,12 +98,11 @@ class ProjectType(TimeStampedModel):
 
 ####################################################################################################
 class ProjectStatus(TimeStampedModel):
-  """(ProjectStatus description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  """The current project status. It doesn't have an historic record."""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
-#  next_statues
 
   class Meta:
       verbose_name_plural = "Project Statuses"
@@ -120,22 +117,42 @@ class ProjectStatus(TimeStampedModel):
 #######################################   Domain  ##################################################  
 ####################################################################################################
 class Employee(User):
-  """(Employee description)"""
-  MARITAL_STATUS = (
+  """
+  We use the django authorization model to represent our employess.
+  We only define the extra fields required for our timetracking system.
+  """
+  MARITAL_STATUSES = (
       (u'M', u'Married'),
       (u'S', u'Single'),
   )
-  salary         = models.DecimalField(max_digits=15, decimal_places=4)
-  is_Manager     = models.BooleanField(default=True)
-  telephone      = models.CharField(blank=True, max_length=15)
-  birth_date     = models.DateField(default=datetime.datetime.today)
-  contract_date  = models.DateField(default=datetime.datetime.today)
-  comments       = models.TextField(blank=True)
+  ENGLISH_LEVELS = (
+      (u'iBT TOEFL 107-120', u'iBT TOEFL 107-120'),
+      (u'iBT TOEFL 90-106', u'iBT TOEFL 90-106'),
+      (u'iBT TOEFL 61-89', u'iBT TOEFL 61-89'),
+      (u'iBT TOEFL 57-60', u'iBT TOEFL 57-60'),
+      (u'CPE', u'Cambridge-Certificate of Proficiency in English'),
+      (u'CAE', u'Cambridge-Certificate in Advance English'),
+      (u'FCE', u'Cambridge-First Certificate in English'),
+      (u'PET', u'Cambridge-Preliminary English Test'),
+      (u'KET', u'Cambridge-Key English Test'),
+      (u'IELTS 7.5-9.0', u'International English Language Testing System 7.5-9.0'),
+      (u'IELTS 6.5-7.0', u'International English Language Testing System 6.5-7.0'),
+      (u'IELTS 5.0-6.0', u'International English Language Testing System 5.0-6.0'),
+      (u'IELTS 3.5-4.5', u'International English Language Testing System 3.5-4.5'),
+      (u'IELTS 3.0', u'International English Language Testing System 3.0'),
+  )
+  
+  salary         = models.DecimalField(max_digits=15, decimal_places=4, help_text="Salary before taxes (Raw)")
+  is_Manager     = models.BooleanField(default=False, help_text="Designates whether this user has a leadership or managerial rol")
+  telephone      = models.CharField(blank=True, null=True, max_length=15)
+  birth_date     = models.DateField(blank=True, null=True)
+  contract_date  = models.DateField(default=datetime.datetime.now)
+  comments       = models.TextField(blank=True, null=True)
   has_passport   = models.BooleanField(default=True)      
-  is_technical   = models.BooleanField(default=True)   
-  can_travel     = models.BooleanField(default=True)
-  english_level  = models.CharField(blank=True, max_length=30)
-  marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS) 
+  is_technical   = models.BooleanField(default=False, help_text="Designates whether this user has a technical leadership rol")   
+  can_travel     = models.BooleanField(default=False)
+  english_level  = models.CharField(blank=True, null=True, max_length=50, choices=ENGLISH_LEVELS)
+  marital_status = models.CharField(blank=True, null=True, max_length=15, choices=MARITAL_STATUSES) 
   # Relationships
   region         = models.ForeignKey(Region)
 
@@ -145,20 +162,23 @@ class Employee(User):
 
 ####################################################################################################
 class WorkSession(TimeStampedModel):
-  """This class represent a chunk of working time associated to some activity.
-     We get more flexibility and by the way is easier to register.
+  """
+  This class represent a chunk of working time associated to one activity.
+  We get more flexibility and by the way is easier to register than forcing to use the activity as the unit of work.
+  In order to support diferent contexts the activity field is optional. In such case we will use the description field instead. 
+  They are mutual exclusive (free or fixed style).
   """
   work_date   = models.DateField(default=datetime.datetime.today)
-  time        = models.PositiveIntegerField(blank=True, null=False)
-  description = models.CharField(blank=True, max_length=100)
-  comments    = models.TextField(blank=True) 
+  time        = models.PositiveIntegerField(null=False)
+  description = models.CharField(blank=True, default='', max_length=100)
+  comments    = models.TextField(blank=True, default='') 
   billable    = models.BooleanField(default=True)
   # Relationships
   activity    = models.ForeignKey(Activity, blank=True, null=True) 
-  category    = models.ForeignKey(Category)
+  work_item   = models.ForeignKey(WorkItem, blank=True, null=True, help_text="The time will be charged to this product.") 
+  category    = models.ForeignKey(Category, blank=True, null=True, help_text="To which group we will charge this time.")
   project     = models.ForeignKey('Project')
   employee    = models.ForeignKey(Employee) 
-  #work_item   = models.ForeignKey(WorkItem) #TODO: We need to validate this
 
   def __unicode__(self):
     return u"%s" % (self.description)
@@ -167,17 +187,22 @@ class WorkSession(TimeStampedModel):
 ####################################################################################################
 class Company(TimeStampedModel):
   """(Company description)"""
-  trade_name  = models.CharField(blank=True, max_length=80)
-  legal_name  = models.CharField(blank=True, max_length=80)
-  description = models.TextField(blank=True)
-  rate        = models.DecimalField(max_digits=15, decimal_places=4)
-  since       = models.DateField(default=datetime.datetime.today)
-  address     = models.CharField(blank=True, max_length=100)
-  is_customer = models.BooleanField(default=True)
-  # Relationships
-  sector      = models.ManyToManyField(Sector) 
-  #contact     = models.ForeignKey(User) # Let us include it in another application (Contact manager?)
-  admin_team  = models.ManyToManyField(Employee, related_name='company_admin_set') #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
+  RELATIONSHIP_TYPES = (
+      (u'C', u'Customer'),
+      (u'P', u'Partner'),
+      (u'A', u'Associate'),
+  )
+  trade_name   = models.CharField(blank=True, max_length=80, help_text="Common o comercial name. Used normally by marketing purposes")
+  legal_name   = models.CharField(blank=True, max_length=80, help_text="Name used for contracts") 
+  description  = models.TextField(blank=True)
+  service_rate = models.DecimalField(max_digits=15, decimal_places=4, help_text="General service rate. It is used as default when the project is created.")
+  address      = models.CharField(blank=True, max_length=100)
+  relationship_since = models.DateField(default=datetime.datetime.today, help_text="when the relationship began")
+  relationship_type  = models.CharField(max_length=2, choices=RELATIONSHIP_TYPES)
+  # Model Relationships
+  sector       = models.ManyToManyField(Sector) 
+  # contact     = models.ForeignKey(User) # Let us include it in another application (Contact manager?)
+  # admin_team  = models.ManyToManyField(Employee, related_name='company_admin_set') #TODO: Maybe create another application in order to assign managers (Staff manager?) 
 
   class Meta:
       verbose_name_plural = "Companies"
@@ -206,7 +231,7 @@ class BusinessUnit(TimeStampedModel):
 class Project(TimeStampedModel):
   """(Project description)"""
   name               = models.CharField(blank=True, max_length=80)
-  alias              = models.CharField(blank=True, max_length=80) # name given by the client: folio, service order, execution request
+  alias              = models.CharField(blank=True, max_length=80) # name given by the client: folio, service order, execution request. TODO move it to Customer
   external_id        = models.CharField(blank=True, max_length=80) # identifier given by the client
   description        = models.CharField(blank=True, max_length=100)
   creation_date      = models.DateField(default=datetime.datetime.today) # when the project was internally approved by the client
@@ -229,12 +254,12 @@ class Project(TimeStampedModel):
   region             = models.ForeignKey('Region') #Mexico, Monterrey, Guadalajara, EU
   team               = models.ManyToManyField(Employee, related_name='client_projects') # team assigned to the project
   admin_team         = models.ManyToManyField(Employee, related_name='project_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
-  client_project_type= models.ForeignKey(ProjectType, related_name='projects')  # Clasificacion de nivel de requerimiento: N1, N2 N3, N4, N5
-  internal_project_type= models.ForeignKey(ProjectType)  # Pruebas, Desarrollo, Analisis
-  client_business_unit = models.ForeignKey(BusinessUnit, related_name='projects') # Dominio, etc.
-  internal_business_unit = models.ForeignKey(BusinessUnit, related_name='internal_projects') # Testing, Development, etc.
-  customer_contact     = models.ForeignKey(User, related_name='client_business_projects')
-
+  client_project_type   = models.ForeignKey(ProjectType, related_name='projects')  # Clasificacion de nivel de requerimiento: N1, N2 N3, N4, N5
+  internal_project_type = models.ForeignKey(ProjectType)  # Pruebas, Desarrollo, Analisis
+  client_business_unit  = models.ForeignKey(BusinessUnit, related_name='projects') # Dominio, etc.
+  internal_business_unit= models.ForeignKey(BusinessUnit, related_name='internal_projects') # Testing, Development, etc.
+  customer_contact      = models.ForeignKey(User, related_name='client_business_projects')
+  work_items            = models.ManyToManyField(WorkItem, help_text="It could be applications, artefacts, etc.")
   #  milestones        #(Requerimiento funcional, entregable, fechas, etc.)
   #  work_items #(Applications, etc.)
 

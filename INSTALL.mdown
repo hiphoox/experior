@@ -56,5 +56,17 @@ STEPS
 	workon new-django-env
 	git clone git@github.com:stonefree/experior.git
 	Enjoy!!!`
-	
+
 ----------
+###Daily work
+
+cd $HOME/my_app_dir
+
+workon new-django-env
+	
+###Print python path
+import sys
+
+from pprint import pprint as pp
+
+pp(sys.path)

@@ -31,6 +31,15 @@ README file under [experior.webfactional.com/$HOME](experior.webfactional.com/$H
 
 
 ----
+Commands
+========
+###manage.py 
+
+	1. rebuild_db : delete the current local sqlite file and create a new one.
+	2. deploy	  : do a local push to github & do a remote pull in the server. 
+
+
+----
 REFERENCES
 ==========
 1.	[django development][0]

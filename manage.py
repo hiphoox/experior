@@ -7,22 +7,29 @@ except ImportError:
     sys.stderr.write("Error: Can't find the file 'settings.py' in the directory containing %r. It appears you've customized things.\nYou'll have to run django-admin.py, passing it your settings module.\n(If the file settings.py does indeed exist, it's causing an ImportError somehow.)\n" % __file__)
     sys.exit(1)
 
-# Custome operations
+# Custom operations
 # By Norberto Ortigoza
 import os, sys 
+
+# Deployment server paths
 deployment_server = "experior@experior.webfactional.com"
 repository_path = "/home/experior/webapps/django_trunk/experior/"
 ssh_key_file = "/home/experior/.ssh/id_rsa"
-git_command = "git pull"
-rebuild_remote_command = "manage.py rebuild_db; restart"
+
 # The -t option allows direct interaction with the command's execution (passphrase entry)
 remote_initialitation = "ssh -t " + deployment_server + " 'source .bash_profile; cd " +  repository_path + "; eval `ssh-agent`; ssh-add " + ssh_key_file  +  "; "
 
+# Remote commands
+git_command = "git pull"
+rebuild_remote_command = "manage.py rebuild_db; restart"
+
+# Validating command parameter
 if len(sys.argv)  > 1:
   operation = sys.argv[1]
 else:
   operation = ''
   
+# New operations
 if operation == "rebuild_db":
   print "Rebuilding local DB:"
   os.system("rm experior.db")
@@ -37,6 +44,7 @@ elif operation == "rebuild_remote":
   print "Rebuilding remote server:"
   os.system(remote_initialitation + rebuild_remote_command + "'")
 
+# If we are not using any new custom operation we follow the normal django flow
 else:
   if __name__ == "__main__":
       execute_manager(settings)

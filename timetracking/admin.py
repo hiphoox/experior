@@ -7,7 +7,28 @@ from django.contrib.auth.forms import UserChangeForm
 from django import forms
 
 
-#######################################   Employee Stuff  ##################################################  
+############################################################################################################
+#######################################   Catalogs Admin  ##################################################  
+############################################################################################################
+class CatalogAdmin(admin.ModelAdmin):
+  list_filter = ('enabled',)
+  save_on_top = True
+  
+admin.site.register(Region, CatalogAdmin)
+admin.site.register(Currency, CatalogAdmin)
+admin.site.register(Sector, CatalogAdmin)
+
+admin.site.register(Activity, CatalogAdmin)
+admin.site.register(Category, CatalogAdmin)
+admin.site.register(WorkItem, CatalogAdmin)
+admin.site.register(ProjectType, CatalogAdmin)
+admin.site.register(ProjectStatus, CatalogAdmin)
+admin.site.register(Application, CatalogAdmin)
+
+
+############################################################################################################
+#######################################   Employee Admin  ##################################################  
+############################################################################################################
 class CustomUserChangeForm(UserChangeForm):
   def __init__(self, *args, **kwargs):
     super(CustomUserChangeForm, self).__init__(*args, **kwargs)
@@ -41,7 +62,9 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 
 
-#######################################   WorkSession Stuff  ##################################################  
+############################################################################################################
+#######################################   WorkSession Admin  ###############################################  
+############################################################################################################
 class WorkSessionChangeForm(forms.ModelForm):  
   work_date = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
 
@@ -54,14 +77,22 @@ class WorkSessionAdmin(admin.ModelAdmin):
 
 admin.site.register(WorkSession, WorkSessionAdmin)
 
-#######################################   Employee Stuff  ##################################################  
+
+############################################################################################################
+#######################################   Company Admin  ################################################### 
+############################################################################################################
+class CompanyChangeForm(forms.ModelForm):  
+  relationship_since = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
+
 class CompanyAdmin(admin.ModelAdmin):
-  date_hierarchy = 'contract_date'
-  exclude = ('password',)
-  list_display = ('username', 'email', 'first_name', 'last_name', 'telephone', 'region','is_staff', 'last_login')
-  list_filter = ('has_passport', 'is_technical', 'is_Manager', 'region', 'is_active')
+  date_hierarchy = 'relationship_since'
+  list_display = ('trade_name', 'legal_name')
+  list_filter = ('sector',)
   save_on_top =  True
-  search_fields = ['first_name']
+  search_fields = ['trade_name', 'legal_name']
+  form = CompanyChangeForm
+
+admin.site.register(Company, CompanyAdmin)
 
 #  list_editable = ('username', 'email', 'first_name', 'last_name', 'telephone', 'region', 'is_staff', 'last_login')
 #  filter_vertical = ('first_name', 'last_name')
@@ -86,14 +117,5 @@ class CompanyAdmin(admin.ModelAdmin):
 #('first_name', 'last_name'), 'email',
 
 
-admin.site.register(Region)
-admin.site.register(Currency)
-admin.site.register(Sector)
-admin.site.register(Activity)
-admin.site.register(Category)
-admin.site.register(WorkItem)
-admin.site.register(ProjectType)
-admin.site.register(ProjectStatus)
-admin.site.register(Company)
 admin.site.register(BusinessUnit)
 admin.site.register(Project)

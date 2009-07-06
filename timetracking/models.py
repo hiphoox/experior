@@ -3,6 +3,7 @@ from django_extensions.db.models import TimeStampedModel
 from django.contrib.auth.models import User, UserManager
 import datetime
 
+####################################################################################################
 #######################################   Catalogs  ################################################  
 ####################################################################################################
 class Region(TimeStampedModel):
@@ -77,7 +78,7 @@ class WorkItem(TimeStampedModel):
   name        = models.CharField(max_length=80)
   description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
-  is_delib    = models.BooleanField(default=True)
+  is_deliverable = models.BooleanField(default=True)
   customer    = models.ForeignKey('Company')
 
   def __unicode__(self):
@@ -110,10 +111,23 @@ class ProjectStatus(TimeStampedModel):
   def __unicode__(self):
     return u"%s, %s" % (self.name , self.description)
 
+####################################################################################################
+class Application(TimeStampedModel):
+  """Customer's applications for a project."""
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
+  enabled     = models.BooleanField(default=True)
+  customer    = models.ForeignKey('Company')
+
+  class Meta:
+      verbose_name_plural = "Applications"
+
+  def __unicode__(self):
+    return u"%s, %s" % (self.name , self.description)
 
 
 
-
+####################################################################################################
 #######################################   Domain  ##################################################  
 ####################################################################################################
 class Employee(User):
@@ -186,17 +200,19 @@ class WorkSession(TimeStampedModel):
 
 ####################################################################################################
 class Company(TimeStampedModel):
-  """(Company description)"""
+  """
+  This class models any kind of company: Customer, Partners, Associates, including ourself.
+  """
   RELATIONSHIP_TYPES = (
       (u'C', u'Customer'),
       (u'P', u'Partner'),
       (u'A', u'Associate'),
   )
-  trade_name   = models.CharField(blank=True, max_length=80, help_text="Common o comercial name. Used normally by marketing purposes")
-  legal_name   = models.CharField(blank=True, max_length=80, help_text="Name used for contracts") 
-  description  = models.TextField(blank=True)
+  trade_name   = models.CharField(max_length=80, help_text="Common o comercial name. Used normally by marketing purposes")
+  legal_name   = models.CharField(max_length=80, help_text="Name used for contracts") 
+  description  = models.TextField(blank=True, null=True)
   service_rate = models.DecimalField(max_digits=15, decimal_places=4, help_text="General service rate. It is used as default when the project is created.")
-  address      = models.CharField(blank=True, max_length=100)
+  address      = models.CharField(blank=True, null=True, max_length=150)
   relationship_since = models.DateField(default=datetime.datetime.today, help_text="when the relationship began")
   relationship_type  = models.CharField(max_length=2, choices=RELATIONSHIP_TYPES)
   # Model Relationships

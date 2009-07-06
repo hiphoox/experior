@@ -38,8 +38,8 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class EmployeeChangeForm(CustomUserChangeForm):  
-  birth_date    = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
-  contract_date = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
+  birth_date    = forms.DateField(required=False, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
+  contract_date = forms.DateField(initial=datetime.date.today, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
 
 
 class CustomUserAdmin(UserAdmin):
@@ -66,7 +66,7 @@ admin.site.register(Employee, EmployeeAdmin)
 #######################################   WorkSession Admin  ###############################################  
 ############################################################################################################
 class WorkSessionChangeForm(forms.ModelForm):  
-  work_date = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
+  work_date = forms.DateField(initial=datetime.date.today, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
 
 class WorkSessionAdmin(admin.ModelAdmin):
   date_hierarchy = 'work_date'
@@ -82,7 +82,7 @@ admin.site.register(WorkSession, WorkSessionAdmin)
 #######################################   Company Admin  ################################################### 
 ############################################################################################################
 class CompanyChangeForm(forms.ModelForm):  
-  relationship_since = forms.DateField(widget=TTAdminTimeWidget(), input_formats=('%Y-%m-%d',))
+  relationship_since = forms.DateField(initial=datetime.date.today, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
 
 class CompanyAdmin(admin.ModelAdmin):
   date_hierarchy = 'relationship_since'
@@ -93,6 +93,44 @@ class CompanyAdmin(admin.ModelAdmin):
   form = CompanyChangeForm
 
 admin.site.register(Company, CompanyAdmin)
+
+
+############################################################################################################
+#######################################   BusinessUnit Admin  ############################################## 
+############################################################################################################
+class CompanyAdmin(admin.ModelAdmin):
+  list_display = ('name', 'description', 'company', 'parent', 'enabled')
+  list_filter = ('company',)
+  save_on_top =  True
+  search_fields = ['name', 'description']
+  filter_vertical = ('company', 'parent')
+  actions = 'delete_selected'  
+
+admin.site.register(BusinessUnit)
+
+
+############################################################################################################
+#######################################   Project Admin  ################################################### 
+############################################################################################################
+class ProjectChangeForm(forms.ModelForm):  
+  creation_date      = forms.DateField(required=False, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
+  request_date       = forms.DateField(required=False, initial=datetime.date.today, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
+  planned_start_date = forms.DateField(required=False, initial=datetime.date.today, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))
+  real_start_date    = forms.DateField(required=False, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',)) 
+  planned_end_date   = forms.DateField(required=False, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',)) 
+  real_end_date      = forms.DateField(required=False, widget=TTAdminDateWidget(), input_formats=('%Y-%m-%d',))    
+
+class ProjectAdmin(admin.ModelAdmin):
+  date_hierarchy = 'creation_date'
+  list_display  = ('name', 'description', 'external_id', 'creation_date', 'planned_start_date','enabled')
+  list_filter   = ('customer',)
+  save_on_top   =  True
+  search_fields = ['name', 'description', 'external_id']
+  actions       = 'delete_selected'  
+  form          = ProjectChangeForm
+
+admin.site.register(Project, ProjectAdmin)
+
 
 #  list_editable = ('username', 'email', 'first_name', 'last_name', 'telephone', 'region', 'is_staff', 'last_login')
 #  filter_vertical = ('first_name', 'last_name')
@@ -117,5 +155,3 @@ admin.site.register(Company, CompanyAdmin)
 #('first_name', 'last_name'), 'email',
 
 
-admin.site.register(BusinessUnit)
-admin.site.register(Project)

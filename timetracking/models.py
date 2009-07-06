@@ -215,6 +215,7 @@ class Company(TimeStampedModel):
   address      = models.CharField(blank=True, null=True, max_length=150)
   relationship_since = models.DateField(default=datetime.datetime.today, help_text="when the relationship began")
   relationship_type  = models.CharField(max_length=2, choices=RELATIONSHIP_TYPES)
+  project_alias      = models.CharField(blank=True, null=True, max_length=80, help_text="Name of the project given by the client: folio, service order, execution request.")
   # Model Relationships
   sector       = models.ManyToManyField(Sector) 
   # contact     = models.ForeignKey(User) # Let us include it in another application (Contact manager?)
@@ -230,14 +231,14 @@ class Company(TimeStampedModel):
 ####################################################################################################
 class BusinessUnit(TimeStampedModel):
   """(BusinessUnit description)"""
-  name        = models.CharField(blank=True, max_length=80)
-  description = models.CharField(blank=True, max_length=100)
+  name        = models.CharField(max_length=80)
+  description = models.CharField(max_length=100)
   enabled     = models.BooleanField(default=True)
   # Relationships
-  company     = models.ForeignKey(Company)
-  parent      = models.ForeignKey('self', null=True, blank=True)
-  customer_team = models.ManyToManyField(User)  #customer people in charge
-  admin_team  = models.ManyToManyField(Employee, related_name='businessunit_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
+  company     = models.ForeignKey(Company, help_text="Company it belongs to")
+  parent      = models.ForeignKey('self', null=True, blank=True, help_text="Another business unit it belongs to")
+  customer_team = models.ManyToManyField(User, help_text="Customer's people in charge")
+  #admin_team  = models.ManyToManyField(Employee, related_name='businessunit_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
 
   def __unicode__(self):
     return u"%s, %s" % (self.name , self.description)
@@ -246,36 +247,35 @@ class BusinessUnit(TimeStampedModel):
 ####################################################################################################
 class Project(TimeStampedModel):
   """(Project description)"""
-  name               = models.CharField(blank=True, max_length=80)
-  alias              = models.CharField(blank=True, max_length=80) # name given by the client: folio, service order, execution request. TODO move it to Customer
-  external_id        = models.CharField(blank=True, max_length=80) # identifier given by the client
-  description        = models.CharField(blank=True, max_length=100)
-  creation_date      = models.DateField(default=datetime.datetime.today) # when the project was internally approved by the client
-  request_date       = models.DateField(default=datetime.datetime.today) # when we received the formal request by the client
+  name               = models.CharField(max_length=80)
+  external_id        = models.CharField(blank=True, null=True, max_length=80, help_text="Identifier given by the client") 
+  description        = models.CharField(max_length=100)
+  creation_date      = models.DateField(blank=True, null=True, default=datetime.datetime.today, help_text="When the project was internally approved by the client.") 
+  request_date       = models.DateField(blank=True, null=True, default=datetime.datetime.today, help_text="When we received the formal request by the client.")
   enabled            = models.BooleanField(default=True)
-  planned_start_date = models.DateField(default=datetime.datetime.today)
-  real_start_date    = models.DateField(default=datetime.datetime.today)
-  planned_end_date   = models.DateField(default=datetime.datetime.today)
-  real_end_date      = models.DateField(default=datetime.datetime.today)
+  planned_start_date = models.DateField(blank=True, null=True, default=datetime.datetime.today)
+  real_start_date    = models.DateField(blank=True, null=True, default=datetime.datetime.today)
+  planned_end_date   = models.DateField(blank=True, null=True, default=datetime.datetime.today)
+  real_end_date      = models.DateField(blank=True, null=True, default=datetime.datetime.today)
   planned_effort     = models.PositiveIntegerField(blank=True, null=True)
   real_effort        = models.PositiveIntegerField(blank=True, null=True)
-  budget             = models.DecimalField(max_digits=15, decimal_places=4) # costo
-  references         = models.TextField(blank=True)  # links or other supplemental info 
-  rate               = models.PositiveIntegerField(blank=True, null=True)
-  exchange_rate      = models.PositiveIntegerField(blank=True, null=True)
+  budget             = models.DecimalField(max_digits=15, decimal_places=4, help_text="Project cost")
+  references         = models.TextField(blank=True, null=True, help_text="links or other supplemental info") 
+  rate               = models.PositiveIntegerField(blank=True, null=True, help_text="Rate of the service. The default is given by the Customer.")
+  exchange_rate      = models.PositiveIntegerField(blank=True, null=True, help_text="Exchange rate used to evaluate the cost of the project")
   # Relationships
   currency           = models.ForeignKey(Currency)
   status             = models.ForeignKey(ProjectStatus) # canceled, active, suspended 
   customer           = models.ForeignKey(Company)
-  region             = models.ForeignKey('Region') #Mexico, Monterrey, Guadalajara, EU
+  region             = models.ForeignKey(Region) #Mexico, Monterrey, Guadalajara, EU
   team               = models.ManyToManyField(Employee, related_name='client_projects') # team assigned to the project
-  admin_team         = models.ManyToManyField(Employee, related_name='project_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
-  client_project_type   = models.ForeignKey(ProjectType, related_name='projects')  # Clasificacion de nivel de requerimiento: N1, N2 N3, N4, N5
-  internal_project_type = models.ForeignKey(ProjectType)  # Pruebas, Desarrollo, Analisis
-  client_business_unit  = models.ForeignKey(BusinessUnit, related_name='projects') # Dominio, etc.
-  internal_business_unit= models.ForeignKey(BusinessUnit, related_name='internal_projects') # Testing, Development, etc.
+  client_project_type   = models.ForeignKey(ProjectType, related_name='projects', help_text="Clasification given by the client: N1, N2 N3, N4, N5")
+  internal_project_type = models.ForeignKey(ProjectType, help_text="Clasification given by us: Pruebas, Desarrollo, Analisis")
+  client_business_unit  = models.ForeignKey(BusinessUnit, blank=True, null=True, related_name='projects') # Dominio, etc.
+  internal_business_unit= models.ForeignKey(BusinessUnit, related_name='internal_projects', help_text="Testing, Development, etc.")
   customer_contact      = models.ForeignKey(User, related_name='client_business_projects')
-  work_items            = models.ManyToManyField(WorkItem, help_text="It could be applications, artefacts, etc.")
+  work_items            = models.ManyToManyField(WorkItem, blank=True, null=True, help_text="It could be applications, artefacts, etc.")
+  #  admin_team         = models.ManyToManyField(Employee, related_name='project_admin_set' ) #TODO: Maybe let us create another application in order to assign managers (Staff manager?) 
   #  milestones        #(Requerimiento funcional, entregable, fechas, etc.)
   #  work_items #(Applications, etc.)
 
